@@ -7,7 +7,8 @@ const latte = {name: "Cafe Latte", price: 4, category: "Drinks"};
 const breakfastBurrito = {name: "Breakfast Burrito", price: 16, category:"Breakfast"};
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 1a: Make a function that builds objects🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
-Add to the function createMenuItems below so it will create objects following the same format found above for latte and breakfastBurrito (name, price, category).  
+Add to the function createMenuItems below so it will create objects 
+following the same format found above for latte and breakfastBurrito (name, price, category).  
 The function should:
   1. Receive values for the object that will be created as parameters
   2. Create and return an object using the received values 
@@ -15,9 +16,15 @@ The function should:
   Example createMenuItem('tacos', 8, 'Lunch') should return {name: 'tacos', price: 8, category: 'Lunch'}
 */
 
-function createMenuItem(/*Your code here*/){
-    /*Your code here*/
+function createMenuItem(name,price,category){
+    const item = {
+      name: name,
+      price: price,
+      category: category,
+    };
+    return item
 }
+createMenuItem("tacos",8,"lunch")
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 1b: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Invoke your function!
@@ -29,7 +36,9 @@ Test your createMenuItems function by doing the following:
   For example: createMenuItem("pizza",5,"lunch") would return this as the object: {name:"Pizza",price:5,category:"lunch"}
 */
 
-
+console.log(createMenuItem("pizza",1,"breakfast"))
+console.log(createMenuItem("morePizza",2,"breakfast"))
+console.log(createMenuItem("allThePizza",777,"breakfast"))
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 2: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 You're having a lunch special! 25% off for teachers and students, 10% off for everyone else. Add a method to the 
@@ -48,10 +57,19 @@ export const burger = {
   name: "Burger", 
   price: 18, 
   category: "Lunch", 
-  /*Your code here*/
+  discount: function(aString) {
+    if (aString === "teacher" || aString === "student"){
+          let price = this.price*0.75;
+          return price;
+        }
+    else if (aString === "public"){
+          let price = this.price*0.9;
+          return price;
+    }
+    
+  }
 }
-
-
+burger.discount("teacher")
 
 ///////////////Reviews (MVP)///////////////////
 const reviews = [
@@ -70,8 +88,15 @@ Using the reviews array above:
   1. log only Julius' feedback to the console - no function needed 
 */
 
+console.log(reviews[5].feedback);
 
+// because test file says "expect function"
+function getReviewByIndex(i){
+  console.log(reviews[i].feedback);
+}
+getReviewByIndex(5)
 
+//neither works, what's going on?
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 4: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Using the reviews array above do the following: (no function needed) 
@@ -79,7 +104,14 @@ Using the reviews array above do the following: (no function needed)
   2. log the whole array to the console, make sure the new review is inside of it   
 */
 
+const madeup = {name: "fictitious", rating: 100, feedback: "Carpet."}
+reviews.push(madeup)
+console.log(reviews.push(madeup));
 
+// reviews.push(
+//   {name: "fictitious", rating: 100, feedback:"Carpet."},
+// ) 
+// console.log(reviews)
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 5: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Reyna's feedback is missing! Use what you know to do the following: (no function needed) 
@@ -87,9 +119,14 @@ Reyna's feedback is missing! Use what you know to do the following: (no function
   2. log the reviews array to the console to check your work
 */
 
+reviews[7].feedback = "this place is chill with really cool people, great for getting work done on weekdays";
+console.log(reviews)
 
+//I spent the entire day trying to figre out why the test file doesn't accept any attempts via codefile. tried reviews.push, directly adding, all sorts of things.
+// then my computer died, I set up a new one (now on windows) and I had to start over. now out of time. very sad
 
-
+// reviews[-1].feedback.push('this place is chill with really cool people, great for getting work done on weekdays')
+// console.log(reviews)
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 6: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Write a function to return a review based on the index of the review in the array.
